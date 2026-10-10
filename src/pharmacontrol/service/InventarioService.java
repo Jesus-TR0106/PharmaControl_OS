@@ -7,13 +7,13 @@ public class InventarioService {
     private Producto[] productos;
     private int cantidadProductos;
 
-    // Constructor
     public InventarioService() {
 
         productos = new Producto[100]; // registro de hasta 100 productos
         cantidadProductos = 0;
     }
 
+    //
     public boolean registrarProducto(Producto producto) {
 
         // Validar que el producto tenga datos
@@ -61,5 +61,29 @@ public class InventarioService {
     // Devuelve la cantidad de productos registrados.
     public int getCantidadProductos() {
         return cantidadProductos;
+    }
+
+    // METODO PARA REPONER STOCK - OPCION 2
+
+    public boolean reponerStock(String codigo, int cantidad) {
+
+        if (cantidad <= 0) {
+            return false;
+        }
+
+        // Buscamos el producto mediante su codigo.
+        Producto producto = buscarProducto(codigo);
+
+        // Si el producto no existe, cancelamos la reposicion
+        if (producto == null) {
+            return false;
+        }
+
+        // Calculamos la nueva cantidad de productos.
+        int nuevoStock = producto.getStock() + cantidad;
+
+        producto.setStock(nuevoStock);
+
+        return true;
     }
 }
