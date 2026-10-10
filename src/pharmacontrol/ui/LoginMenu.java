@@ -22,8 +22,8 @@ public class LoginMenu {
 
         System.out.println("==================================");
         System.out.println("       PHARMACONTROL OS");
-        System.out.println("          INICIAR SESION");
         System.out.println("==================================");
+        System.out.println("INICIAR SESION");
 
         // Intentos de login hasta 3 veces
         while (intentos > 0) {
