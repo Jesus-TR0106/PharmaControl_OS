@@ -1,0 +1,70 @@
+package src.pharmacontrol.ui;
+
+import java.util.Scanner;
+
+public class MenuAdministrador {
+
+    private Scanner scanner;
+
+    public MenuAdministrador(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    // Muestra el menú del administrador
+    public void mostrar() {
+
+        boolean continuar = true;
+
+        while (continuar) {
+
+            System.out.println("\n================================");
+            System.out.println("    MENU DE ADMINISTRADOR");
+            System.out.println("================================");
+            System.out.println("1. Gestionar inventario");
+            System.out.println("2. Gestionar ventas y caja");
+            System.out.println("3. Gestionar clientes");
+            System.out.println("4. Gestionar empleados y usuarios");
+            System.out.println("5. Consultar asistencia");
+            System.out.println("6. Controlar temperaturas");
+            System.out.println("7. Gestionar lotes y vencimientos");
+            System.out.println("8. Consultar reportes");
+            System.out.println("0. Cerrar sesion");
+            System.out.print("Seleccione una opcion: ");
+
+            String opcion = scanner.nextLine();
+
+            if (opcion.equals("1")) {
+                System.out.println("Modulo de inventario pendiente.");
+
+            } else if (opcion.equals("2")) {
+                System.out.println("Modulo de ventas pendiente.");
+
+            } else if (opcion.equals("3")) {
+                System.out.println("Modulo de clientes pendiente.");
+
+            } else if (opcion.equals("4")) {
+                System.out.println("Gestion de usuarios pendiente.");
+
+            } else if (opcion.equals("5")) {
+                System.out.println("Modulo de asistencia pendiente.");
+
+            } else if (opcion.equals("6")) {
+                System.out.println("Modulo de temperatura pendiente.");
+
+            } else if (opcion.equals("7")) {
+                System.out.println("Modulo de caducidad pendiente.");
+
+            } else if (opcion.equals("8")) {
+                System.out.println("Reportes pendientes.");
+
+            } else if (opcion.equals("0")) {
+                continuar = false;
+
+            } else {
+                System.out.println("Opcion no valida.");
+            }
+        }
+
+        System.out.println("Sesion de administrador cerrada.");
+    }
+}
