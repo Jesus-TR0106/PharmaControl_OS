@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class MenuAdministrador {
 
     private Scanner scanner;
+    private InventarioMenu inventarioMenu;
 
-    public MenuAdministrador(Scanner scanner) {
+    public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu) {
         this.scanner = scanner;
+        this.inventarioMenu = inventarioMenu;
     }
 
     // Muestra el menú del administrador
@@ -34,7 +36,7 @@ public class MenuAdministrador {
             String opcion = scanner.nextLine();
 
             if (opcion.equals("1")) {
-                System.out.println("Modulo de inventario pendiente.");
+                inventarioMenu.mostrar();
 
             } else if (opcion.equals("2")) {
                 System.out.println("Modulo de ventas pendiente.");
