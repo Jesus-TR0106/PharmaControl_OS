@@ -20,7 +20,7 @@ public class Main {
         InventarioService inventarioService = new InventarioService();
         InventarioMenu inventarioMenu = new InventarioMenu(scanner, inventarioService);
         MenuAdministrador menuAdmin = new MenuAdministrador(scanner, inventarioMenu);
-        MenuEmpleado menuEmpleado = new MenuEmpleado(scanner);
+        MenuEmpleado menuEmpleado = new MenuEmpleado(scanner, inventarioService);
 
         boolean sistemaActivo = true;
 
