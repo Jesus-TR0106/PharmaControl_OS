@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import src.pharmacontrol.model.Usuario;
 import src.pharmacontrol.service.AutenticacionService;
+import src.pharmacontrol.service.InventarioService;
+import src.pharmacontrol.ui.InventarioMenu;
 import src.pharmacontrol.ui.LoginMenu;
 import src.pharmacontrol.ui.MenuAdministrador;
 import src.pharmacontrol.ui.MenuEmpleado;
@@ -15,7 +17,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AutenticacionService autenticacion = new AutenticacionService();
         LoginMenu login = new LoginMenu(scanner, autenticacion);
-        MenuAdministrador menuAdmin = new MenuAdministrador(scanner);
+        InventarioService inventarioService = new InventarioService();
+        InventarioMenu inventarioMenu = new InventarioMenu(scanner, inventarioService);
+        MenuAdministrador menuAdmin = new MenuAdministrador(scanner, inventarioMenu);
         MenuEmpleado menuEmpleado = new MenuEmpleado(scanner);
 
         boolean sistemaActivo = true;
