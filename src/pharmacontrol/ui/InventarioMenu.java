@@ -36,7 +36,7 @@ public class InventarioMenu {
                 registrarProducto();
 
             } else if (opcion.equals("2")) {
-                System.out.println("Reposicion de stock pendiente.");
+                reponerStock();
 
             } else if (opcion.equals("3")) {
                 System.out.println("Consulta de inventario pendiente.");
@@ -93,26 +93,38 @@ public class InventarioMenu {
 
     // REPONER STOCK - OPCION 2
 
-    public boolean reponerStock(String codigo, int cantidad) {
+    public void reponerStock() {
 
-        if (cantidad <= 0) {
-            return false;
-        }
+        System.out.println("\n===== REPONER STOCK =====");
 
-        // Buscamos el producto mediante su codigo.
+        System.out.print("Codigo del producto: ");
+        String codigo = scanner.nextLine();
+
+        // Verificamos que el producto exista.
         Producto producto = inventarioService.buscarProducto(codigo);
 
-        // Si el producto no existe, cancelamos la reposicion
         if (producto == null) {
-            return false;
+            System.out.println("Producto no encontrado.");
+            return;
         }
 
-        // Calculamos la nueva cantidad de productos.
-        int nuevoStock = producto.getStock() + cantidad;
+        // Muestra la informacion del producto.
+        System.out.println("Producto: " + producto.getNombre());
+        System.out.println("Stock actual: " + producto.getStock());
 
-        producto.setStock(nuevoStock);
+        System.out.print("Cantidad a agregar: ");
+        int cantidad = Integer.parseInt(scanner.nextLine());
 
-        return true;
+        // Actualiza el stock
+        boolean actualizado = inventarioService.reponerStock(codigo, cantidad);
 
+        if (actualizado) {
+            System.out.println("Stock actualizado correctamente.");
+            System.out.println("Nuevo stock: " + producto.getStock());
+        } else {
+            System.out.println("No se pudo actualizar el stock.");
+            System.out.println("La cantidad debe ser mayor que cero.");
+        }
     }
+
 }
