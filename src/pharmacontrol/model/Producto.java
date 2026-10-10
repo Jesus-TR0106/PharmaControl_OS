@@ -5,11 +5,15 @@ public class Producto {
     private String nombre;
     private double precio;
     private int stock;
+    private String codigo;
+    private String categoria;
 
-    public Producto(String nombre, double precio, int stock) {
+    public Producto(String nombre, double precio, int stock, String codigo, String categoria) {
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.codigo = codigo;
+        this.categoria = categoria;
     }
 
     public String getNombre() {
@@ -22,6 +26,14 @@ public class Producto {
 
     public int getStock() {
         return stock;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getCategoria() {
+        return categoria;
     }
 
     public void setNombre(String nombre) {
@@ -41,7 +53,10 @@ public class Producto {
     }
 
     public void mostrarInformacion() {
+        System.out.println("---------------------");
+        System.out.println("Codigo: " + codigo);
         System.out.println("Producto: " + nombre);
+        System.out.println("Categoria:" + categoria);
         System.out.println("Precio: S/. " + precio);
         System.out.println("Stock: " + stock);
     }
