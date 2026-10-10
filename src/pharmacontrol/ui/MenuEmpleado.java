@@ -6,7 +6,6 @@ public class MenuEmpleado {
 
     private Scanner scanner;
 
-    // Recibe el Scanner para leer las opciones del menú.
     public MenuEmpleado(Scanner scanner) {
         this.scanner = scanner;
     }
