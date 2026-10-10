@@ -90,4 +90,29 @@ public class InventarioMenu {
             System.out.println("Verifique si el codigo ya existe o si el inventario está lleno.");
         }
     }
+
+    // REPONER STOCK - OPCION 2
+
+    public boolean reponerStock(String codigo, int cantidad) {
+
+        if (cantidad <= 0) {
+            return false;
+        }
+
+        // Buscamos el producto mediante su codigo.
+        Producto producto = inventarioService.buscarProducto(codigo);
+
+        // Si el producto no existe, cancelamos la reposicion
+        if (producto == null) {
+            return false;
+        }
+
+        // Calculamos la nueva cantidad de productos.
+        int nuevoStock = producto.getStock() + cantidad;
+
+        producto.setStock(nuevoStock);
+
+        return true;
+
+    }
 }
