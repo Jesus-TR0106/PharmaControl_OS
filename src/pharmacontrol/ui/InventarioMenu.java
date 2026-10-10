@@ -39,10 +39,10 @@ public class InventarioMenu {
                 reponerStock();
 
             } else if (opcion.equals("3")) {
-                System.out.println("Consulta de inventario pendiente.");
+                consultarInventario();
 
             } else if (opcion.equals("4")) {
-                System.out.println("Busqueda de producto pendiente.");
+                buscarProducto();
 
             } else if (opcion.equals("0")) {
                 menuActivo = false;
@@ -124,6 +124,54 @@ public class InventarioMenu {
         } else {
             System.out.println("No se pudo actualizar el stock.");
             System.out.println("La cantidad debe ser mayor que cero.");
+        }
+    }
+
+    // CONSULTAR INVENTARIO - OPCION 3
+
+    public void consultarInventario() {
+
+        System.out.println("\n===== INVENTARIO GENERAL =====");
+
+        int cantidad = inventarioService.getCantidadProductos();
+
+        if (cantidad == 0) {
+            System.out.println("No hay productos registrados.");
+            return;
+        }
+
+        // Arreglo de productos
+        Producto[] productos = inventarioService.obtenerProductos();
+
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println("\nProducto N° " + (i + 1));
+
+            productos[i].mostrarInformacion();
+        }
+    }
+
+    // BUSCAR PRODUCTO - OPCION 4
+
+    public void buscarProducto() {
+
+        System.out.println("\n===== BUSCAR PRODUCTO =====");
+
+        // Solicitamos el codigo del producto
+        System.out.print("Ingrese el codigo: ");
+        String codigo = scanner.nextLine();
+
+        // Buscamos el producto en el inventario.
+        Producto producto = inventarioService.buscarProducto(codigo);
+
+        // Verificamos si encontramos el producto.
+        if (producto != null) {
+
+            System.out.println("\nProducto encontrado:");
+            producto.mostrarInformacion();
+
+        } else {
+
+            System.out.println("No se encontro un producto con ese codigo.");
         }
     }
 
