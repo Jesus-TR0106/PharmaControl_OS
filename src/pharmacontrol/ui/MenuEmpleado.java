@@ -35,7 +35,7 @@ public class MenuEmpleado {
             String opcion = scanner.nextLine();
 
             if (opcion.equals("1")) {
-                System.out.println("Consulta de productos pendiente.");
+                consultarInventario();
 
             } else if (opcion.equals("2")) {
                 System.out.println("Registro de ventas pendiente.");
