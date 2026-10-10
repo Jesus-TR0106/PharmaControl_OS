@@ -10,8 +10,8 @@ public class LoginMenu {
     private Scanner scanner;
     private AutenticacionService autenticacionService;
 
-    public LoginMenu(AutenticacionService autenticacionService) {
-        this.scanner = new Scanner(System.in);
+    public LoginMenu(Scanner scanner, AutenticacionService autenticacionService) {
+        this.scanner = scanner;
         this.autenticacionService = autenticacionService;
     }
 
