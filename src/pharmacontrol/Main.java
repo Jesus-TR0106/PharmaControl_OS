@@ -1,28 +1,67 @@
 package src.pharmacontrol;
 
-import src.pharmacontrol.model.Cliente;
-import src.pharmacontrol.model.Empleado;
-import src.pharmacontrol.model.Persona;
-import src.pharmacontrol.model.Producto;
+import java.util.Scanner;
+
+import src.pharmacontrol.model.Usuario;
+import src.pharmacontrol.service.AutenticacionService;
+import src.pharmacontrol.ui.LoginMenu;
+import src.pharmacontrol.ui.MenuAdministrador;
+import src.pharmacontrol.ui.MenuEmpleado;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        Producto producto = new Producto("Paracetamol", 5.50, 20);
-        Cliente cliente = new Cliente("Jesus", "74947673", true);
-        Empleado empleado = new Empleado("María", "65214837", "Farmaceutica");
+        Scanner scanner = new Scanner(System.in);
+        AutenticacionService autenticacion = new AutenticacionService();
+        LoginMenu login = new LoginMenu(scanner, autenticacion);
+        MenuAdministrador menuAdmin = new MenuAdministrador(scanner);
+        MenuEmpleado menuEmpleado = new MenuEmpleado(scanner);
 
-        System.out.println("=========== PRODUCTO ===========");
-        producto.mostrarInformacion();
+        boolean sistemaActivo = true;
 
-        System.out.println("=========== PERSONAS ===========");
-        Persona[] personas = {
-                cliente, empleado
-        };
+        while (sistemaActivo) {
 
-        for (Persona persona : personas) {
-            persona.mostrarInformacion();
-            System.out.println();
+            // Solicitamos las credenciales del usuario.
+            Usuario usuario = login.mostrarLogin();
+
+            // Verificamos si el inicio de sesión fue correcto.
+            if (usuario != null) {
+
+                // Mostramos el menú según el rol de la cuenta.
+                if (usuario.getRol().equals("ADMINISTRADOR")) {
+
+                    menuAdmin.mostrar();
+
+                } else if (usuario.getRol().equals("EMPLEADO")) {
+
+                    menuEmpleado.mostrar();
+
+                } else {
+
+                    System.out.println("Rol no reconocido.");
+                }
+
+            } else {
+
+                System.out.println("No se pudo iniciar sesion.");
+            }
+
+            // Preguntamos si se desea volver a iniciar sesión.
+            System.out.println("\n¿Desea volver a iniciar sesión?");
+            System.out.println("1. Si");
+            System.out.println("0. Salir");
+            System.out.print("Opcion: ");
+
+            String opcion = scanner.nextLine();
+
+            if (!opcion.equals("1")) {
+                sistemaActivo = false;
+            }
         }
+
+        System.out.println("Gracias por utilizar PharmaControl OS.");
+
+        scanner.close();
     }
 }
