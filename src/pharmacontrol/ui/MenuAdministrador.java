@@ -2,7 +2,9 @@ package src.pharmacontrol.ui;
 
 import java.util.Scanner;
 import src.pharmacontrol.model.Asistencia;
+import src.pharmacontrol.model.RegistroTemperatura;
 import src.pharmacontrol.service.AsistenciaService;
+import src.pharmacontrol.service.TemperaturaService;
 
 public class MenuAdministrador {
 
@@ -10,13 +12,15 @@ public class MenuAdministrador {
     private InventarioMenu inventarioMenu;
     private VentaMenu ventaMenu;
     private AsistenciaService asistenciaService;
+    private TemperaturaService temperaturaService;
 
     public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu, VentaMenu ventaMenu,
-            AsistenciaService asistenciaService) {
+            AsistenciaService asistenciaService, TemperaturaService temperaturaService) {
         this.scanner = scanner;
         this.inventarioMenu = inventarioMenu;
         this.ventaMenu = ventaMenu;
         this.asistenciaService = asistenciaService;
+        this.temperaturaService = temperaturaService;
     }
 
     // Muestra el menú del administrador
@@ -49,7 +53,7 @@ public class MenuAdministrador {
                 consultarAsistencias();
 
             } else if (opcion.equals("4")) {
-                System.out.println("Modulo de temperatura pendiente.");
+                consultarTemperaturas();
 
             } else if (opcion.equals("5")) {
                 System.out.println("Modulo de caducidad pendiente.");
@@ -83,6 +87,34 @@ public class MenuAdministrador {
             asistencias[i].mostrarInformacion();
 
             System.out.println("------------------------------");
+        }
+    }
+
+    // CONTROL DE TEMPERATURAS
+
+    private void consultarTemperaturas() {
+
+        System.out.println("\n===== CONTROL DE TEMPERATURAS =====");
+
+        int cantidad = temperaturaService.getCantidadRegistros();
+
+        // Verificamos si existen registros
+        if (cantidad == 0) {
+            System.out.println("No hay temperaturas registradas.");
+            return;
+        }
+
+        // Obtenemos los registros
+        RegistroTemperatura[] registros = temperaturaService.obtenerRegistros();
+
+        // Mostramos todos los registros
+        for (int i = 0; i < cantidad; i++) {
+
+            System.out.println("\nRegistro N° " + (i + 1));
+
+            registros[i].mostrarInformacion();
+
+            System.out.println("-------------------------");
         }
     }
 }
