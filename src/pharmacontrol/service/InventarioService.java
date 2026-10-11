@@ -15,27 +15,22 @@ public class InventarioService {
 
     //
     public boolean registrarProducto(Producto producto) {
-
-        // Validar que el producto tenga datos
         if (producto == null) {
             return false;
         }
 
-        // Verifica que el código no esté repetido.
-        if (buscarProducto(producto.getCodigo()) != null) {
+        if (cantidadProductos >= productos.length) {
             return false;
         }
 
-        // Verifica que exista espacio en el arreglo.
-        if (cantidadProductos < productos.length) {
+        String codigo = String.format("MED%03d", cantidadProductos + 1);
 
-            productos[cantidadProductos] = producto;
-            cantidadProductos++;
+        producto.setCodigo(codigo);
 
-            return true;
-        }
+        productos[cantidadProductos] = producto;
+        cantidadProductos++;
 
-        return false;
+        return true;
     }
 
     // Busca un producto utilizando su código.
