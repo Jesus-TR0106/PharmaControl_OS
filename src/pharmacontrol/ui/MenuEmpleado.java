@@ -8,10 +8,12 @@ public class MenuEmpleado {
 
     private Scanner scanner;
     private InventarioService inventarioService;
+    private VentaMenu ventaMenu;
 
-    public MenuEmpleado(Scanner scanner, InventarioService inventarioService) {
+    public MenuEmpleado(Scanner scanner, InventarioService inventarioService, VentaMenu ventaMenu) {
         this.scanner = scanner;
         this.inventarioService = inventarioService;
+        this.ventaMenu = ventaMenu;
     }
 
     // Muestra las opciones de trabajo del empleado.
@@ -38,7 +40,7 @@ public class MenuEmpleado {
                 consultarInventario();
 
             } else if (opcion.equals("2")) {
-                System.out.println("Registro de ventas pendiente.");
+                ventaMenu.registrarVenta();
 
             } else if (opcion.equals("3")) {
                 System.out.println("Registro de asistencia pendiente.");
