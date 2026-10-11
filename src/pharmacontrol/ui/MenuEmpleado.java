@@ -4,6 +4,7 @@ import java.util.Scanner;
 import src.pharmacontrol.model.Producto;
 import src.pharmacontrol.service.InventarioService;
 import src.pharmacontrol.service.AsistenciaService;
+import src.pharmacontrol.service.TemperaturaService;
 
 public class MenuEmpleado {
 
@@ -11,16 +12,19 @@ public class MenuEmpleado {
     private InventarioService inventarioService;
     private VentaMenu ventaMenu;
     private AsistenciaService asistenciaService;
+    private TemperaturaService temperaturaService;
 
     public MenuEmpleado(Scanner scanner,
             InventarioService inventarioService,
             VentaMenu ventaMenu,
-            AsistenciaService asistenciaService) {
+            AsistenciaService asistenciaService,
+            TemperaturaService temperaturaService) {
 
         this.scanner = scanner;
         this.inventarioService = inventarioService;
         this.ventaMenu = ventaMenu;
         this.asistenciaService = asistenciaService;
+        this.temperaturaService = temperaturaService;
     }
 
     // Muestra las opciones de trabajo del empleado.
@@ -53,7 +57,7 @@ public class MenuEmpleado {
                 registrarAsistencia();
 
             } else if (opcion.equals("4")) {
-                System.out.println("Registro de temperatura pendiente.");
+                registrarTemperatura();
 
             } else if (opcion.equals("5")) {
                 System.out.println("Consulta de alertas pendiente.");
@@ -141,5 +145,17 @@ public class MenuEmpleado {
         String nombreEmpleado = scanner.nextLine();
 
         asistenciaService.registrarAsistencia(nombreEmpleado);
+    }
+
+    // REGISTRO DE TEMPERATURA - OPCION 4
+
+    private void registrarTemperatura() {
+
+        System.out.println("\n===== REGISTRAR TEMPERATURA =====");
+
+        System.out.print("Ingrese la temperatura en grados Celsius: ");
+        double temperatura = Double.parseDouble(scanner.nextLine());
+
+        temperaturaService.registrarTemperatura(temperatura);
     }
 }
