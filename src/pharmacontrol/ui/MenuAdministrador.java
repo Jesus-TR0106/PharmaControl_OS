@@ -6,10 +6,12 @@ public class MenuAdministrador {
 
     private Scanner scanner;
     private InventarioMenu inventarioMenu;
+    private VentaMenu ventaMenu;
 
-    public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu) {
+    public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu, VentaMenu ventaMenu) {
         this.scanner = scanner;
         this.inventarioMenu = inventarioMenu;
+        this.ventaMenu = ventaMenu;
     }
 
     // Muestra el menú del administrador
@@ -36,7 +38,7 @@ public class MenuAdministrador {
                 inventarioMenu.mostrar();
 
             } else if (opcion.equals("2")) {
-                System.out.println("Modulo de ventas y caja pendiente.");
+                ventaMenu.mostrar();
 
             } else if (opcion.equals("3")) {
                 System.out.println("Modulo de asistencia pendiente.");
