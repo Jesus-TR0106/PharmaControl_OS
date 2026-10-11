@@ -48,6 +48,10 @@ public class Producto {
         this.stock = stock;
     }
 
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public double calcularValorStock() {
         return precio * stock;
     }
