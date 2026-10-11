@@ -11,6 +11,7 @@ import src.pharmacontrol.ui.MenuAdministrador;
 import src.pharmacontrol.ui.MenuEmpleado;
 import src.pharmacontrol.service.VentaService;
 import src.pharmacontrol.ui.VentaMenu;
+import src.pharmacontrol.service.AsistenciaService;
 
 public class Main {
 
@@ -23,8 +24,9 @@ public class Main {
         VentaService ventaService = new VentaService(inventarioService);
         InventarioMenu inventarioMenu = new InventarioMenu(scanner, inventarioService);
         VentaMenu ventaMenu = new VentaMenu(scanner, ventaService, inventarioService);
-        MenuAdministrador menuAdmin = new MenuAdministrador(scanner, inventarioMenu, ventaMenu);
-        MenuEmpleado menuEmpleado = new MenuEmpleado(scanner, inventarioService, ventaMenu);
+        AsistenciaService asistenciaService = new AsistenciaService();
+        MenuAdministrador menuAdmin = new MenuAdministrador(scanner, inventarioMenu, ventaMenu, asistenciaService);
+        MenuEmpleado menuEmpleado = new MenuEmpleado(scanner, inventarioService, ventaMenu, asistenciaService);
 
         boolean sistemaActivo = true;
 
