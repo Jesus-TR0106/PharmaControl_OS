@@ -45,7 +45,7 @@ public class LoteService {
             return false;
         }
 
-        // Generamos un codigo automatico para el lote.
+        // Generamos un codigo automatico para el lote
         String codigoLote = String.format("LOT%03d", cantidadLotes + 1);
 
         Lote lote = new Lote(
