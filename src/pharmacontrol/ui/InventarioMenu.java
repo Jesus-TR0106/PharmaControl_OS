@@ -59,9 +59,6 @@ public class InventarioMenu {
 
         System.out.println("\n===== REGISTRAR PRODUCTO =====");
 
-        System.out.println("Codigo: ");
-        String codigo = scanner.nextLine();
-
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
 
@@ -79,15 +76,15 @@ public class InventarioMenu {
             return;
         }
 
-        Producto producto = new Producto(nombre, precio, stock, codigo, categoria);
+        Producto producto = new Producto(nombre, precio, stock, null, categoria);
 
         boolean registrado = inventarioService.registrarProducto(producto);
 
         if (registrado) {
             System.out.println("Producto registrado correctamente.");
+            System.out.println("Codigo generado: " + producto.getCodigo());
         } else {
             System.out.println("No se pudo registrar el producto");
-            System.out.println("Verifique si el codigo ya existe o si el inventario está lleno.");
         }
     }
 
