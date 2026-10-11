@@ -3,17 +3,24 @@ package src.pharmacontrol.ui;
 import java.util.Scanner;
 import src.pharmacontrol.model.Producto;
 import src.pharmacontrol.service.InventarioService;
+import src.pharmacontrol.service.AsistenciaService;
 
 public class MenuEmpleado {
 
     private Scanner scanner;
     private InventarioService inventarioService;
     private VentaMenu ventaMenu;
+    private AsistenciaService asistenciaService;
 
-    public MenuEmpleado(Scanner scanner, InventarioService inventarioService, VentaMenu ventaMenu) {
+    public MenuEmpleado(Scanner scanner,
+            InventarioService inventarioService,
+            VentaMenu ventaMenu,
+            AsistenciaService asistenciaService) {
+
         this.scanner = scanner;
         this.inventarioService = inventarioService;
         this.ventaMenu = ventaMenu;
+        this.asistenciaService = asistenciaService;
     }
 
     // Muestra las opciones de trabajo del empleado.
@@ -28,7 +35,7 @@ public class MenuEmpleado {
             System.out.println("================================");
             System.out.println("1. Consultar productos");
             System.out.println("2. Registrar una venta");
-            System.out.println("3. Registrar mi asistencia");
+            System.out.println("3. Registrar asistencia");
             System.out.println("4. Registrar temperatura");
             System.out.println("5. Consultar alertas de vencimiento");
             System.out.println("0. Cerrar sesion");
@@ -43,7 +50,7 @@ public class MenuEmpleado {
                 ventaMenu.registrarVenta();
 
             } else if (opcion.equals("3")) {
-                System.out.println("Registro de asistencia pendiente.");
+                registrarAsistencia();
 
             } else if (opcion.equals("4")) {
                 System.out.println("Registro de temperatura pendiente.");
@@ -124,4 +131,15 @@ public class MenuEmpleado {
         }
     }
 
+    // REGISTRO DE ASISTENCIA - OPCION 3
+
+    private void registrarAsistencia() {
+
+        System.out.println("\n===== REGISTRAR ASISTENCIA =====");
+
+        System.out.print("Ingrese su nombre de usuario: ");
+        String nombreEmpleado = scanner.nextLine();
+
+        asistenciaService.registrarAsistencia(nombreEmpleado);
+    }
 }
