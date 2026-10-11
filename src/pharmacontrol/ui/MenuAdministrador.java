@@ -1,17 +1,22 @@
 package src.pharmacontrol.ui;
 
 import java.util.Scanner;
+import src.pharmacontrol.model.Asistencia;
+import src.pharmacontrol.service.AsistenciaService;
 
 public class MenuAdministrador {
 
     private Scanner scanner;
     private InventarioMenu inventarioMenu;
     private VentaMenu ventaMenu;
+    private AsistenciaService asistenciaService;
 
-    public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu, VentaMenu ventaMenu) {
+    public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu, VentaMenu ventaMenu,
+            AsistenciaService asistenciaService) {
         this.scanner = scanner;
         this.inventarioMenu = inventarioMenu;
         this.ventaMenu = ventaMenu;
+        this.asistenciaService = asistenciaService;
     }
 
     // Muestra el menú del administrador
@@ -41,7 +46,7 @@ public class MenuAdministrador {
                 ventaMenu.mostrar();
 
             } else if (opcion.equals("3")) {
-                System.out.println("Modulo de asistencia pendiente.");
+                consultarAsistencias();
 
             } else if (opcion.equals("4")) {
                 System.out.println("Modulo de temperatura pendiente.");
@@ -58,5 +63,26 @@ public class MenuAdministrador {
         }
 
         System.out.println("Sesion de administrador cerrada.");
+    }
+
+    // CONSULTAR ASISTENCIA - OPCION 3
+
+    private void consultarAsistencias() {
+        System.out.println("\n===== CONTROL DE ASISTENCIAS =====");
+
+        int cantidad = asistenciaService.getCantidadAsistencias();
+        if (cantidad == 0) {
+            System.out.println("No hay asistencias registradas");
+            return;
+        }
+
+        Asistencia[] asistencias = asistenciaService.obtenerAsistencias();
+
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println("\nRegistro N° " + (i + 1));
+            asistencias[i].mostrarInformacion();
+
+            System.out.println("------------------------------");
+        }
     }
 }
