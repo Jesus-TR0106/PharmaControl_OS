@@ -13,6 +13,8 @@ import src.pharmacontrol.service.VentaService;
 import src.pharmacontrol.ui.VentaMenu;
 import src.pharmacontrol.service.AsistenciaService;
 import src.pharmacontrol.service.TemperaturaService;
+import src.pharmacontrol.service.LoteService;
+import src.pharmacontrol.ui.LoteMenu;
 
 public class Main {
 
@@ -26,11 +28,13 @@ public class Main {
         InventarioMenu inventarioMenu = new InventarioMenu(scanner, inventarioService);
         VentaMenu ventaMenu = new VentaMenu(scanner, ventaService, inventarioService);
         AsistenciaService asistenciaService = new AsistenciaService();
+        LoteService loteService = new LoteService(inventarioService);
+        LoteMenu loteMenu = new LoteMenu(scanner, loteService);
         TemperaturaService temperaturaService = new TemperaturaService();
         MenuAdministrador menuAdmin = new MenuAdministrador(scanner, inventarioMenu, ventaMenu, asistenciaService,
-                temperaturaService);
+                temperaturaService, loteMenu);
         MenuEmpleado menuEmpleado = new MenuEmpleado(scanner, inventarioService, ventaMenu, asistenciaService,
-                temperaturaService);
+                temperaturaService, loteMenu);
 
         boolean sistemaActivo = true;
 

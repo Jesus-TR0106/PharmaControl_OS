@@ -1,6 +1,7 @@
 package src.pharmacontrol.ui;
 
 import java.util.Scanner;
+
 import src.pharmacontrol.model.Producto;
 import src.pharmacontrol.service.InventarioService;
 import src.pharmacontrol.service.AsistenciaService;
@@ -13,18 +14,21 @@ public class MenuEmpleado {
     private VentaMenu ventaMenu;
     private AsistenciaService asistenciaService;
     private TemperaturaService temperaturaService;
+    private LoteMenu loteMenu;
 
     public MenuEmpleado(Scanner scanner,
             InventarioService inventarioService,
             VentaMenu ventaMenu,
             AsistenciaService asistenciaService,
-            TemperaturaService temperaturaService) {
+            TemperaturaService temperaturaService,
+            LoteMenu loteMenu) {
 
         this.scanner = scanner;
         this.inventarioService = inventarioService;
         this.ventaMenu = ventaMenu;
         this.asistenciaService = asistenciaService;
         this.temperaturaService = temperaturaService;
+        this.loteMenu = loteMenu;
     }
 
     // Muestra las opciones de trabajo del empleado.
@@ -60,7 +64,7 @@ public class MenuEmpleado {
                 registrarTemperatura();
 
             } else if (opcion.equals("5")) {
-                System.out.println("Consulta de alertas pendiente.");
+                loteMenu.consultarVencimientos();
 
             } else if (opcion.equals("0")) {
                 continuar = false;

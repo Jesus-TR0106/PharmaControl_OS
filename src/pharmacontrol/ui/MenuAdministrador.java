@@ -13,14 +13,16 @@ public class MenuAdministrador {
     private VentaMenu ventaMenu;
     private AsistenciaService asistenciaService;
     private TemperaturaService temperaturaService;
+    private LoteMenu loteMenu;
 
     public MenuAdministrador(Scanner scanner, InventarioMenu inventarioMenu, VentaMenu ventaMenu,
-            AsistenciaService asistenciaService, TemperaturaService temperaturaService) {
+            AsistenciaService asistenciaService, TemperaturaService temperaturaService, LoteMenu loteMenu) {
         this.scanner = scanner;
         this.inventarioMenu = inventarioMenu;
         this.ventaMenu = ventaMenu;
         this.asistenciaService = asistenciaService;
         this.temperaturaService = temperaturaService;
+        this.loteMenu = loteMenu;
     }
 
     // Muestra el menú del administrador
@@ -56,7 +58,7 @@ public class MenuAdministrador {
                 consultarTemperaturas();
 
             } else if (opcion.equals("5")) {
-                System.out.println("Modulo de caducidad pendiente.");
+                loteMenu.mostrar();
 
             } else if (opcion.equals("0")) {
                 continuar = false;
