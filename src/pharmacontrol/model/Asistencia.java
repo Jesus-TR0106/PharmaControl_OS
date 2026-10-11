@@ -7,9 +7,7 @@ public class Asistencia {
     private String horaEntrada;
     private String estado;
 
-    // Constructor
     public Asistencia(String nombreEmpleado, String fecha, String horaEntrada, String estado) {
-
         this.nombreEmpleado = nombreEmpleado;
         this.fecha = fecha;
         this.horaEntrada = horaEntrada;
@@ -32,7 +30,7 @@ public class Asistencia {
         return estado;
     }
 
-    // Muestra la informacion de una asistencia.
+    // Muestra la informacion de una asistencia
     public void mostrarInformacion() {
 
         System.out.println("Empleado: " + nombreEmpleado);
